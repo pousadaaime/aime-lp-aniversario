@@ -197,6 +197,34 @@ src="https://www.facebook.com/tr?id=983368201398155&ev=PageView&noscript=1"/></n
   .sending.show{display:flex;}
   .spinner{width:38px; height:38px; border:3px solid rgba(255,255,255,.25); border-top-color:#fff; border-radius:50%; animation:spin 1s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
+
+  .video-embed video, .depo-card video{width:100%; max-height:520px; object-fit:contain; background:#000; display:block;}
+
+  /* mobile: os tamanhos base ficam grandes demais em telas estreitas */
+  @media(max-width:600px){
+    section{padding:44px 0;}
+    .hero{min-height:560px;}
+    .hero h1{font-size:26px;}
+    .hero p{font-size:15px;}
+    .hero .destaque{font-size:13px;}
+    .section-title h2{font-size:22px;}
+    .section-title p{font-size:15px;}
+    .prosa p{font-size:15px;}
+    .prosa .sintese{font-size:16px;}
+    .comp-card h3{font-size:18px;}
+    .comp-list div{font-size:14px;}
+    .obj-bloco h3{font-size:19px;}
+    .obj-bloco p{font-size:14px;}
+    .local h2{font-size:22px;}
+    .local p{font-size:15px;}
+    .faq-item h3{font-size:15px;}
+    .faq-item .resposta p{font-size:14px;}
+    .fechamento .versos p{font-size:16px;}
+    .checklist span{font-size:13px;}
+    .form-card h2{font-size:19px;}
+    .form-card{padding:24px;}
+    .btn{font-size:15px; padding:14px 24px;}
+  }
 </style>
 </head>
 <body>
@@ -296,40 +324,6 @@ src="https://www.facebook.com/tr?id=983368201398155&ev=PageView&noscript=1"/></n
   </div>
 </section>
 
-<!-- ============ OBJEÇÕES ============ -->
-<section class="objecoes">
-  <div class="wrap">
-    <div class="section-title">
-      <div class="tag">Perguntas que talvez estejam passando pela sua cabeça</div>
-      <h2>A gente já ouviu essas também</h2>
-    </div>
-
-    <div class="obj-bloco">
-      <div class="pergunta">"Mas vai ficar caro..."</div>
-      <h3>E se cada convidado pagasse a própria hospedagem?</h3>
-      <p>Em vez de você bancar uma festa inteira, você reúne as pessoas, cada convidado participa da viagem, e os custos podem ser divididos entre quem vai. Isso transforma uma comemoração que poderia custar milhares de reais numa experiência compartilhada. Você não precisa pagar o aniversário inteiro sozinho. A forma de divisão pode ser negociada de acordo com o grupo e a reserva.</p>
-    </div>
-
-    <div class="obj-bloco">
-      <div class="pergunta">"Meus amigos não vão querer viajar..."</div>
-      <h3>Talvez eles só precisem de um bom motivo.</h3>
-      <p>Imagina receber esta mensagem: "meu aniversário vai ser em Maresias. Em vez de uma festa de algumas horas, quero passar o fim de semana com vocês." É diferente. E provavelmente muito mais difícil de esquecer. Uma festa acaba. Uma viagem vira história.</p>
-    </div>
-
-    <div class="obj-bloco">
-      <div class="pergunta">"Não quero ter que organizar tudo"</div>
-      <h3>A gente entende. E cuida disso com você.</h3>
-      <p>Você não deveria passar seu aniversário inteiro resolvendo fornecedor. Antes de qualquer reserva, nossa equipe conversa com você pra entender quantas pessoas vão, quando você quer ir, o que imagina pra comemoração e qual experiência gostaria de proporcionar aos seus convidados. Você imagina a comemoração. A gente ajuda a encontrar o melhor formato.</p>
-    </div>
-
-    <div class="obj-bloco">
-      <div class="pergunta">"E se eu não quiser uma festa?"</div>
-      <h3>Melhor ainda.</h3>
-      <p>Você pode simplesmente transformar seu aniversário numa viagem: poucas pessoas, uma acomodação, piscina, praia, jantar, fogueira, um fim de semana inteiro juntos. Não existe obrigação de fazer uma grande festa. Seu aniversário pode ter o tamanho que fizer sentido pra você.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ============ VÍDEOS ============ -->
 <section>
   <div class="wrap">
@@ -339,21 +333,26 @@ src="https://www.facebook.com/tr?id=983368201398155&ev=PageView&noscript=1"/></n
     </div>
     <div class="videos-grid">
       <div class="video-embed">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUjqmKADU7d/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+        <video controls preload="metadata" poster="img/vid/video1-poster.jpg" playsinline>
+          <source src="img/vid/video1.mp4" type="video/mp4">
+        </video>
         <div class="cap">Como é a Aimê</div>
       </div>
       <div class="video-embed">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DTQOCIuDvI7/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+        <video controls preload="metadata" poster="img/vid/video2-poster.jpg" playsinline>
+          <source src="img/vid/video2.mp4" type="video/mp4">
+        </video>
         <div class="cap">Como pode ser seu aniversário aqui</div>
       </div>
       <div class="video-embed">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DTcss87DkNb/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+        <video controls preload="metadata" poster="img/vid/video3-poster.jpg" playsinline>
+          <source src="img/vid/video3.mp4" type="video/mp4">
+        </video>
         <div class="cap">Uma viagem pra comemorar</div>
       </div>
     </div>
   </div>
 </section>
-<script async src="//www.instagram.com/embed.js"></script>
 
 <!-- ============ GALERIA ============ -->
 <section style="background:var(--areia);">
@@ -384,10 +383,14 @@ src="https://www.facebook.com/tr?id=983368201398155&ev=PageView&noscript=1"/></n
     </div>
     <div class="depo-grid">
       <div class="depo-card embed">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWzYvT7GAIY/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+        <video controls preload="metadata" poster="img/vid/depo1-poster.jpg" playsinline style="width:100%; display:block;">
+          <source src="img/vid/depo1.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="depo-card embed">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DU7-GUsDu0m/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+        <video controls preload="metadata" poster="img/vid/depo2-poster.jpg" playsinline style="width:100%; display:block;">
+          <source src="img/vid/depo2.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
