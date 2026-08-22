@@ -589,6 +589,27 @@ const $ = id => document.getElementById(id);
 const form = $('leadForm');
 $('data').min = new Date().toISOString().split('T')[0];
 
+/* Envia o lead pra planilha. Prioriza sendBeacon (pensado pelo próprio
+   navegador pra "disparar e não esperar", sobrevive à navegação que já
+   vem em seguida pro WhatsApp) — no navegador in-app do Instagram/Facebook
+   o fetch com redirect (Apps Script sempre redireciona) pode falhar
+   silenciosamente, e mode:'no-cors' esconde esse erro da página. Mesmo
+   corpo (texto puro em JSON) nos dois caminhos, pra não mudar o que o
+   Apps Script já espera receber. */
+function enviarLead(payload){
+  const body = JSON.stringify(payload);
+  if (navigator.sendBeacon) {
+    const blob = new Blob([body], {type:'text/plain;charset=utf-8'});
+    if (navigator.sendBeacon(SHEETS_URL, blob)) return Promise.resolve();
+  }
+  return fetch(SHEETS_URL, {
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body
+  }).catch(err => console.warn('Falha ao salvar lead:', err));
+}
+
 function mascara(el){
   el.addEventListener('input', () => {
     let v = el.value.replace(/\D/g,'').slice(0,11);
@@ -639,30 +660,23 @@ form.addEventListener('submit', async (e) => {
   }
 
   if (SHEETS_URL) {
-    try {
-      await fetch(SHEETS_URL, {
-        method:'POST',
-        mode:'no-cors',
-        headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body: JSON.stringify({
-          action: 'novo_lead',
-          nome,
-          checkin: dataViagem,
-          checkout: 'A definir',
-          adultos: convidados,
-          criancas: '0',
-          pet: 'Não',
-          whatsapp: $('whats').value,
-          telefone: $('whats').value,
-          email: '',
-          observacao,
-          categoria: 'Aniversário',
-          canal: 'WhatsApp',
-          origem: 'LP ANIVERSARIO',
-          data_envio: new Date().toLocaleString('pt-BR')
-        })
-      });
-    } catch(err){ console.warn('Falha ao salvar lead:', err); }
+    await enviarLead({
+      action: 'novo_lead',
+      nome,
+      checkin: dataViagem,
+      checkout: 'A definir',
+      adultos: convidados,
+      criancas: '0',
+      pet: 'Não',
+      whatsapp: $('whats').value,
+      telefone: $('whats').value,
+      email: '',
+      observacao,
+      categoria: 'Aniversário',
+      canal: 'WhatsApp',
+      origem: 'LP ANIVERSARIO',
+      data_envio: new Date().toLocaleString('pt-BR')
+    });
   }
 
   const msg =
